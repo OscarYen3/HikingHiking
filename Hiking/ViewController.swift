@@ -29,6 +29,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
+    @IBOutlet weak var lblSubscription: UILabel!
     @Published private(set) var purchasedIdentifiers = Set<String>()
     
     public enum StoreError: Error {
@@ -43,6 +44,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lblSubscription.text =
+        "iTunes每週訂閱方案: [HikingVIP]\n\n訂閱解鎖看新聞資訊\n\n$10TWD/每週 "
         self.Secondtbv.backgroundView = UIImageView(image: UIImage(named: "depositphotos.jpg"))
         self.Secondtbv.backgroundView?.alpha = 0.2
         self.Secondtbv.backgroundView?.contentMode = .scaleAspectFit
@@ -78,7 +81,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let contacts = UIContextualAction(style: .normal, title: "分享") { (action, sourceView, completionHandler) in
-            let defautText = "你也來看看這裡 http://gisweb.taipei.gov.tw/release/  我選的這條" + self.data2[indexPath.row].text! + "只是其中一條而已唷！！"
+            let defautText = "我選的這條" + self.data2[indexPath.row].text! + "只是其中一條而已唷！！"
             let activityController = UIActivityViewController(activityItems: [defautText], applicationActivities: nil)
             self.present(activityController, animated:true ,completion: nil)
             completionHandler(true)
