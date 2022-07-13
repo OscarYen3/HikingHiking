@@ -30,6 +30,7 @@ class AltimeterViewController: UIViewController,CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fixNavigationBar() 
         cheakLocationServices()
         startPedometer()
         startTrackingAltitudeChanges()
@@ -140,6 +141,18 @@ class AltimeterViewController: UIViewController,CLLocationManagerDelegate {
             switchState.text = "停止紀錄"
             altimeter.stopRelativeAltitudeUpdates()
             pedometer.stopUpdates()
+        }
+    }
+    
+    func fixNavigationBar() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor.darkGray
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navigationItem.standardAppearance = appearance
+            navigationItem.scrollEdgeAppearance = appearance
+            navigationItem.compactAppearance = appearance
         }
     }
 

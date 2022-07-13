@@ -25,6 +25,7 @@ class firstPageViewController: UIViewController,UITableViewDelegate,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        fixNavigationBar() 
         self.firsttbv.rowHeight = 70
         firsttbv.refreshControl = refresher
         firsttbv.addSubview(refresher)
@@ -106,6 +107,17 @@ class firstPageViewController: UIViewController,UITableViewDelegate,UITableViewD
             else { return }
             let note1 = self.myUrl[row]
             webVC.xmlURL = note1
+        }
+    }
+    func fixNavigationBar() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor.darkGray
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navigationItem.standardAppearance = appearance
+            navigationItem.scrollEdgeAppearance = appearance
+            navigationItem.compactAppearance = appearance
         }
     }
 }

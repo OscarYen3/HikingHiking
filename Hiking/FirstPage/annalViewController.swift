@@ -29,7 +29,7 @@ class annalViewController: UIViewController,UIImagePickerControllerDelegate,UINa
     var currentNote : Note!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fixNavigationBar() 
         finalPlace.text = self.currentNote.text
         finalTime.text = self.currentNote.text2
         annalImage.image =  self.currentNote.image() == nil ? UIImage(named: "下載.png") :  self.currentNote.image()
@@ -291,6 +291,18 @@ class annalViewController: UIViewController,UIImagePickerControllerDelegate,UINa
                 }
                 
             }
+        }
+    }
+    
+    func fixNavigationBar() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor.darkGray
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navigationItem.standardAppearance = appearance
+            navigationItem.scrollEdgeAppearance = appearance
+            navigationItem.compactAppearance = appearance
         }
     }
     

@@ -16,7 +16,9 @@ import StoreKit
 
 let PRODUCT_ID = "com.oscaryen.Hiking_VIP"
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,annalViewControllerDelegate,SKPaymentTransactionObserver, SKProductsRequestDelegate{
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,annalViewControllerDelegate,SKPaymentTransactionObserver, SKProductsRequestDelegate, SubscriptionInfoDelegate{
+ 
+    
     
     
     @IBOutlet weak var Firsttbv: UIView!
@@ -41,9 +43,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     //21008表示生产换使用  21007表示测试环境使用
     var state = 21007
     var expires_date = ""
+    var m_oSubscriptionInfo: SubscriptionInfoView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fixNavigationBar()
+        m_oSubscriptionInfo = SubscriptionInfoView(nibName: "SubscriptionInfoView", bundle: nil)
         lblSubscription.text =
         "iTunes每週訂閱方案: [HikingVIP]\n\n訂閱解鎖看新聞資訊\n\n$10TWD/每週 "
         self.Secondtbv.backgroundView = UIImageView(image: UIImage(named: "depositphotos.jpg"))
@@ -65,7 +70,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         Secondtbv.isHidden =  Segment.selectedSegmentIndex == 1 ? false : true
         subscriptionView.isHidden = Segment.selectedSegmentIndex == 0 ? checkVip() : true
         self.navigationItem.rightBarButtonItem?.isEnabled =  false
-        self.navigationItem.rightBarButtonItem?.tintColor = .white
+        self.navigationItem.rightBarButtonItem?.tintColor = .clear
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -171,14 +176,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         case 0 :
            
             self.navigationItem.rightBarButtonItem?.isEnabled =  false
-            self.navigationItem.rightBarButtonItem?.tintColor = .white
+            self.navigationItem.rightBarButtonItem?.tintColor = .clear
             
             print("第一格")
             setLoading(false)
         case 1 :
             
             self.navigationItem.rightBarButtonItem?.isEnabled =  true
-            self.navigationItem.rightBarButtonItem?.tintColor = .black
+            self.navigationItem.rightBarButtonItem?.tintColor = .blue
             
             print("第二格")
             setLoading(false)
@@ -811,6 +816,57 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             }
         }
         
+    }
+    
+    func UIShowSubscriptionInfo(_ bShow: Bool) {
+        if let oView = m_oSubscriptionInfo {
+            oView._delegate = self
+            Segment.isHidden = bShow
+            DialogShow(oView, bShow)
+        }
+    }
+    
+    func SubscriptionInfoOk() {
+        UIShowSubscriptionInfo(false)
+    }
+    
+    @IBAction func openSubscriptionInfo(_ sender: Any) {
+        UIShowSubscriptionInfo(true)
+    }
+    
+    private func DialogShow(_ oView: UIViewController , _ bShow:Bool) {
+        if(bShow) {
+            self.view.addSubview(oView.view)
+            oView.view.center = self.view.center
+            oView.view.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            oView.view.alpha = 0
+            
+            UIView.animate(withDuration: 0.3) {
+                
+                oView.view.alpha = 1
+                oView.view.transform = CGAffineTransform.identity
+            }
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                oView.view.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+                oView.view.alpha = 0
+                
+            }) { (success:Bool) in
+                oView.view.removeFromSuperview()
+            }
+        }
+    }
+    
+    func fixNavigationBar() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor.darkGray
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navigationItem.standardAppearance = appearance
+            navigationItem.scrollEdgeAppearance = appearance
+            navigationItem.compactAppearance = appearance
+        }
     }
     
 }

@@ -27,7 +27,7 @@ class MapViewController: UIViewController,MKMapViewDelegate,CLLocationManagerDel
     override func viewDidLoad() {
         super.viewDidLoad()
        cheaklocationServices()
-    
+        fixNavigationBar() 
         myMap.userTrackingMode = .follow
         myMap.delegate = self
        
@@ -346,6 +346,18 @@ var artwork50 = Artwork(title: "九五峰步道",locationName: "南港區",coord
         let location = view.annotation as! Artwork
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         location.mapItem().openInMaps(launchOptions: launchOptions)
+    }
+    
+    func fixNavigationBar() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor.darkGray
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navigationItem.standardAppearance = appearance
+            navigationItem.scrollEdgeAppearance = appearance
+            navigationItem.compactAppearance = appearance
+        }
     }
     
 }
