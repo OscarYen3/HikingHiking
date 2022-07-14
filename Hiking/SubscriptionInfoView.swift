@@ -33,5 +33,10 @@ class SubscriptionInfoView: UIViewController {
         }
         
     }
-
+    @IBAction func toWeb(_ sender: Any) {
+        if let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
 }

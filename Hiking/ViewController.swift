@@ -32,6 +32,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
     @IBOutlet weak var lblSubscription: UILabel!
+    @IBOutlet weak var btnCheck: UIButton!
     @Published private(set) var purchasedIdentifiers = Set<String>()
     
     public enum StoreError: Error {
@@ -56,6 +57,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.Secondtbv.backgroundView?.contentMode = .scaleAspectFit
         Thread.sleep(forTimeInterval: 0.5)
         self.paymentTransactionPurchased()
+        btnCheck.setImage(UIImage(named: "check"), for: .selected)
+        btnCheck.setImage(UIImage(named: "uncheck"), for: .normal)
+        btnCheck.setTitle("", for: .selected)
+        btnCheck.setTitle("", for: .normal)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +70,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         var updateListenerTask: Task<Void, Error>? = nil
             updateListenerTask = listenForTransactions()
         }
+        btnSubscription.isEnabled = false
+        btnCheck.isSelected = false
         
         Segment.selectedSegmentIndex = 0
         Firsttbv.isHidden = Segment.selectedSegmentIndex == 0 ? false : true
@@ -869,4 +877,15 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
     }
     
+    @IBAction func checkClick(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        btnSubscription.isEnabled = sender.isSelected ? true : false
+    }
+    @IBAction func toWeb(_ sender: Any) {
+        btnSubscription.isEnabled = true
+        btnCheck.isSelected = true
+        if let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") {
+            UIApplication.shared.open(url)
+        }
+    }
 }
