@@ -42,7 +42,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var vip: Bool = false
     var receipt: String = ""
     //21008表示生产换使用  21007表示测试环境使用
-    var state = 21007
+    var state = 21008
     var expires_date = ""
     var m_oSubscriptionInfo: SubscriptionInfoView?
     
@@ -434,6 +434,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                         break
                     case   21008 :
                         print("此收據來自生產環境，但發送到測試環境進行驗證，應將其發送到生產環境")
+                        self.state = 21008
+                        self.verify(data: data!, transaction: transaction)
                         break
                     case   21010 :
                         print("此收據無法獲得授權，對待此收據的方式與從未進行過的任何交易時的處理方式相同")
@@ -789,6 +791,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                     break
                 case   21008 :
                     print("此收據來自生產環境，但發送到測試環境進行驗證，應將其發送到生產環境")
+                    self.state = 21008
                     break
                 case   21010 :
                     print("此收據無法獲得授權，對待此收據的方式與從未進行過的任何交易時的處理方式相同")
