@@ -13,4 +13,5 @@ target 'Hiking' do
 pod 'Alamofire', '~> 4.0'
 pod 'Kanna', '~> 4.0.0'
 pod 'Kingfisher', '~> 5.0'
+pod 'Google-Mobile-Ads-SDK'
 end
