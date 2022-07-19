@@ -12,11 +12,11 @@ import CoreLocation
 import Contacts
 import CoreData
 import StoreKit
-
+import GoogleMobileAds
 
 let PRODUCT_ID = "com.oscaryen.Hiking_VIP"
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,annalViewControllerDelegate,SKPaymentTransactionObserver, SKProductsRequestDelegate, SubscriptionInfoDelegate{
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,annalViewControllerDelegate,SKPaymentTransactionObserver, SKProductsRequestDelegate, SubscriptionInfoDelegate,GADBannerViewDelegate{
  
     
     
@@ -33,6 +33,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     @IBOutlet weak var lblSubscription: UILabel!
     @IBOutlet weak var btnCheck: UIButton!
+    
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     @Published private(set) var purchasedIdentifiers = Set<String>()
     
     public enum StoreError: Error {
@@ -45,6 +48,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var state = 21008
     var expires_date = ""
     var m_oSubscriptionInfo: SubscriptionInfoView?
+    let adSize = GADAdSizeFromCGSize(CGSize(width: 300, height: 50))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +65,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         btnCheck.setImage(UIImage(named: "uncheck"), for: .normal)
         btnCheck.setTitle("", for: .selected)
         btnCheck.setTitle("", for: .normal)
-
+        
+       
+        bannerView.delegate = self
+        bannerView.adUnitID = "ca-app-pub-8113349784134636/9986765456"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -891,4 +901,39 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             UIApplication.shared.open(url)
         }
     }
+    
+  
+    // MARK: - GADBannerViewDelegate
+     // Called when an ad request loaded an ad.
+     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+       print(#function)
+     }
+
+     // Called when an ad request failed.
+     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: NSError) {
+       print("\(#function): \(error.localizedDescription)")
+     }
+
+     // Called just before presenting the user a full screen view, such as a browser, in response to
+     // clicking on an ad.
+     func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+       print(#function)
+     }
+
+     // Called just before dismissing a full screen view.
+     func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+       print(#function)
+     }
+
+     // Called just after dismissing a full screen view.
+     func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+       print(#function)
+     }
+
+     // Called just before the application will background or exit because the user clicked on an
+     // ad that will launch another application (such as the App Store).
+     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+       print(#function)
+     }
+   
 }

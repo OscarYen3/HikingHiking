@@ -169,6 +169,13 @@
                                     <constraint firstItem="YbN-lu-wHP" firstAttribute="centerX" secondItem="GE7-K0-3g6" secondAttribute="centerX" id="mW6-ND-ceK"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzE-KR-5Uj" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="573" width="375" height="45"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="jqp-GM-sG3"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2K-m5-WJ2" userLabel="loadingview">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -212,8 +219,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9X2-Eb-E4G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2od-wg-XhB"/>
+                            <constraint firstItem="zzE-KR-5Uj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="34u-eY-dlo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GE7-K0-3g6" secondAttribute="trailing" id="76I-fp-gmd"/>
                             <constraint firstItem="bjO-16-3nf" firstAttribute="trailing" secondItem="9X2-Eb-E4G" secondAttribute="trailing" id="7k0-gH-YtV"/>
+                            <constraint firstItem="zzE-KR-5Uj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Agf-gF-A3T"/>
                             <constraint firstItem="GE7-K0-3g6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="B1s-NH-bnA"/>
                             <constraint firstItem="bjO-16-3nf" firstAttribute="bottom" secondItem="9X2-Eb-E4G" secondAttribute="bottom" id="J4l-Nh-xDo"/>
                             <constraint firstItem="bjO-16-3nf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-8" id="JY8-AS-ArC"/>
@@ -225,6 +234,7 @@
                             <constraint firstItem="9X2-Eb-E4G" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="49" id="hse-rg-WCr"/>
                             <constraint firstItem="W2K-m5-WJ2" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="k84-4N-eKj"/>
                             <constraint firstItem="9X2-Eb-E4G" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nLD-Dl-CQY"/>
+                            <constraint firstItem="zzE-KR-5Uj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oQm-ht-hMF"/>
                             <constraint firstItem="bjO-16-3nf" firstAttribute="leading" secondItem="9X2-Eb-E4G" secondAttribute="leading" id="pyK-hI-6Eb"/>
                             <constraint firstAttribute="bottom" secondItem="W2K-m5-WJ2" secondAttribute="bottom" id="rzS-O9-vw5"/>
                         </constraints>
@@ -254,6 +264,7 @@
                         <outlet property="Segment" destination="pY1-Xo-lp1" id="NFt-ep-tS3"/>
                         <outlet property="activity" destination="e17-kS-xv9" id="YSG-jg-v2C"/>
                         <outlet property="addButton" destination="rZu-g5-NVW" id="bMs-ST-s7D"/>
+                        <outlet property="bannerView" destination="zzE-KR-5Uj" id="is2-sO-MLg"/>
                         <outlet property="btnCheck" destination="mWO-97-il2" id="Xwg-Mi-VEv"/>
                         <outlet property="btnSubscription" destination="uRP-1T-Lyf" id="BVz-KZ-eeS"/>
                         <outlet property="lblSubscription" destination="6Y1-45-Px1" id="hkR-IJ-iFh"/>
@@ -778,6 +789,9 @@
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
