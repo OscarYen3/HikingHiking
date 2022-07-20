@@ -9,17 +9,15 @@
 import UIKit
 import ARKit
 
-class ARView: UIViewController {
+class ARView: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addBox()
         addTapGestureToSceneView()
         configureLighting()
-       
+        addBox()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,13 +38,23 @@ class ARView: UIViewController {
         sceneView.session.pause()
     }
     
+//    func setUpSceneView() {
+//        let configuration = ARWorldTrackingConfiguration()
+//        configuration.planeDetection = .horizontal
+//
+//        sceneView.session.run(configuration)
+//
+//        sceneView.delegate = self
+//        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+//    }
+    
     func addBox(x: Float = 0, y: Float = 0, z: Float = -0.2) {
         let box = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
         
         let boxNode = SCNNode()
         boxNode.geometry = box
         boxNode.position = SCNVector3(x, y, z)
-        
+//        boxNode.scale = SCNVector3(0.5, 0.5, 0.5)
         sceneView.scene.rootNode.addChildNode(boxNode)
     }
     
@@ -74,8 +82,9 @@ class ARView: UIViewController {
         node.removeFromParentNode()
     }
     
+    
     func addPaperPlane(x: Float = 0, y: Float = 0, z: Float = -0.5) {
-        //no used
+        //notworking
         guard let paperPlaneScene = SCNScene(named: "paperPlane.scn"), let paperPlaneNode = paperPlaneScene.rootNode.childNode(withName: "paperPlane", recursively: true) else { return }
         paperPlaneNode.position = SCNVector3(x, y, z)
         sceneView.scene.rootNode.addChildNode(paperPlaneNode)
@@ -86,6 +95,19 @@ class ARView: UIViewController {
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
     }
+    
+    func addCar(x: Float = 0, y: Float = 0, z: Float = -0.5) {
+        //notworking
+        guard let carScene = SCNScene(named: "car.dae") else { return }
+        let carNode = SCNNode()
+        let carSceneChildNodes = carScene.rootNode.childNodes
+        for childNode in carSceneChildNodes {
+            carNode.addChildNode(childNode)
+        }
+        carNode.position = SCNVector3(x, y, z)
+        carNode.scale = SCNVector3(0.5, 0.5, 0.5)
+        sceneView.scene.rootNode.addChildNode(carNode)
+    }
 }
 
 extension float4x4 {
@@ -94,3 +116,57 @@ extension float4x4 {
         return float3(translation.x, translation.y, translation.z)
     }
 }
+
+//extension ViewController: ARSCNViewDelegate {
+//    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+//        // 1
+//        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+//
+//        // 2
+//        let width = CGFloat(planeAnchor.extent.x)
+//        let height = CGFloat(planeAnchor.extent.z)
+//        let plane = SCNPlane(width: width, height: height)
+//
+//        // 3
+//        plane.materials.first?.diffuse.contents = UIColor.transparentLightBlue
+//
+//        // 4
+//        let planeNode = SCNNode(geometry: plane)
+//
+//        // 5
+//        let x = CGFloat(planeAnchor.center.x)
+//        let y = CGFloat(planeAnchor.center.y)
+//        let z = CGFloat(planeAnchor.center.z)
+//        planeNode.position = SCNVector3(x,y,z)
+//        planeNode.eulerAngles.x = -.pi / 2
+//
+//        // 6
+//        node.addChildNode(planeNode)
+//    }
+//
+//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+//        // 1
+//        guard let planeAnchor = anchor as?  ARPlaneAnchor,
+//            let planeNode = node.childNodes.first,
+//            let plane = planeNode.geometry as? SCNPlane
+//            else { return }
+//
+//        // 2
+//        let width = CGFloat(planeAnchor.extent.x)
+//        let height = CGFloat(planeAnchor.extent.z)
+//        plane.width = width
+//        plane.height = height
+//
+//        // 3
+//        let x = CGFloat(planeAnchor.center.x)
+//        let y = CGFloat(planeAnchor.center.y)
+//        let z = CGFloat(planeAnchor.center.z)
+//        planeNode.position = SCNVector3(x, y, z)
+//    }
+//}
+//
+//extension UIColor {
+//    open class var transparentLightBlue: UIColor {
+//        return UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.50)
+//    }
+//}

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C011B1121C7E24E00F9DCE3 /* annalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C011B1021C7E24E00F9DCE3 /* annalViewController.swift */; };
 		0C0695ED28878F0B00BCF34B /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0695EC28878F0B00BCF34B /* ARView.swift */; };
-		0C0695F72887A38000BCF34B /* 3D Objects in Resources */ = {isa = PBXBuildFile; fileRef = 0C0695F62887A38000BCF34B /* 3D Objects */; };
+		0C0695F92887A77700BCF34B /* 3D Objects in Resources */ = {isa = PBXBuildFile; fileRef = 0C0695F82887A77700BCF34B /* 3D Objects */; };
 		0C1C2E1721C3B269008269C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C2E1621C3B269008269C2 /* AppDelegate.swift */; };
 		0C1C2E1921C3B269008269C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C2E1821C3B269008269C2 /* ViewController.swift */; };
 		0C1C2E1C21C3B269008269C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C1C2E1A21C3B269008269C2 /* Main.storyboard */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		0C011B1021C7E24E00F9DCE3 /* annalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = annalViewController.swift; sourceTree = "<group>"; };
 		0C0695EC28878F0B00BCF34B /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
-		0C0695F62887A38000BCF34B /* 3D Objects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "3D Objects"; sourceTree = "<group>"; };
+		0C0695F82887A77700BCF34B /* 3D Objects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "3D Objects"; sourceTree = "<group>"; };
 		0C1C2E1321C3B269008269C2 /* Hiking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hiking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C1C2E1621C3B269008269C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C1C2E1821C3B269008269C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		0C1C2E1521C3B269008269C2 /* Hiking */ = {
 			isa = PBXGroup;
 			children = (
-				0C0695F62887A38000BCF34B /* 3D Objects */,
+				0C0695F82887A77700BCF34B /* 3D Objects */,
 				0CE6458321E47FCE00E8CD0B /* CoreDataHelper.swift */,
 				0C1C2E1621C3B269008269C2 /* AppDelegate.swift */,
 				0C1C2E1821C3B269008269C2 /* ViewController.swift */,
@@ -236,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C1C2E2121C3B269008269C2 /* LaunchScreen.storyboard in Resources */,
-				0C0695F72887A38000BCF34B /* 3D Objects in Resources */,
+				0C0695F92887A77700BCF34B /* 3D Objects in Resources */,
 				0C2BEEA9287E54300084C16D /* SubscriptionInfoView.xib in Resources */,
 				0CE6804921E4776A00C0AF35 /* Assets.xcassets in Resources */,
 				0C1C2E1C21C3B269008269C2 /* Main.storyboard in Resources */,
