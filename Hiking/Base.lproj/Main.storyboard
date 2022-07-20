@@ -627,6 +627,36 @@
             </objects>
             <point key="canvasLocation" x="6724" y="-600.44977511244383"/>
         </scene>
+        <!--AR-->
+        <scene sceneID="Zr2-0v-J62">
+            <objects>
+                <viewController id="rrc-dG-I2S" customClass="ARView" customModule="Hiking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oIL-2K-h4R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Umu-lA-uDd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                            </arscnView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ead-Pd-MZG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ead-Pd-MZG" firstAttribute="trailing" secondItem="Umu-lA-uDd" secondAttribute="trailing" id="A6A-C2-FPy"/>
+                            <constraint firstItem="ead-Pd-MZG" firstAttribute="bottom" secondItem="Umu-lA-uDd" secondAttribute="bottom" id="LyW-PT-2QH"/>
+                            <constraint firstItem="Umu-lA-uDd" firstAttribute="leading" secondItem="ead-Pd-MZG" secondAttribute="leading" id="RCK-eO-iXu"/>
+                            <constraint firstItem="Umu-lA-uDd" firstAttribute="top" secondItem="ead-Pd-MZG" secondAttribute="top" id="uAe-LQ-6ps"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="AR" image="command" catalog="system" id="f9X-SK-dqY"/>
+                    <connections>
+                        <outlet property="sceneView" destination="Umu-lA-uDd" id="gHd-oT-adZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WmO-LT-57r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4605.6000000000004" y="-639.13043478260875"/>
+        </scene>
         <!--Item-->
         <scene sceneID="ori-6C-bVo">
             <objects>
@@ -642,6 +672,7 @@
                         <segue destination="0kJ-so-Web" kind="relationship" relationship="viewControllers" id="f75-rx-6QE"/>
                         <segue destination="SXz-Ar-LoB" kind="relationship" relationship="viewControllers" id="eGL-Nr-nTc"/>
                         <segue destination="0kj-b6-gWq" kind="relationship" relationship="viewControllers" id="1ug-4M-Wkx"/>
+                        <segue destination="rrc-dG-I2S" kind="relationship" relationship="viewControllers" id="u8P-zu-2bF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ScY-uf-WLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -782,6 +813,7 @@
     <resources>
         <image name=" " width="16" height="16"/>
         <image name="Icon-Small-1" width="29" height="29"/>
+        <image name="command" catalog="system" width="128" height="115"/>
         <image name="mountains" width="46" height="51"/>
         <image name="push-pin" width="30" height="30"/>
         <systemColor name="darkTextColor">
