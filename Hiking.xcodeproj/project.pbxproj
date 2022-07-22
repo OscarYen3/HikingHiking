@@ -10,6 +10,9 @@
 		0C011B1121C7E24E00F9DCE3 /* annalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C011B1021C7E24E00F9DCE3 /* annalViewController.swift */; };
 		0C0695ED28878F0B00BCF34B /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0695EC28878F0B00BCF34B /* ARView.swift */; };
 		0C0695F92887A77700BCF34B /* 3D Objects in Resources */ = {isa = PBXBuildFile; fileRef = 0C0695F82887A77700BCF34B /* 3D Objects */; };
+		0C09BAC0288A814000D2011F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09BABF288A814000D2011F /* Common.swift */; };
+		0C09BAC2288A891100D2011F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09BAC1288A891100D2011F /* UIView+Extension.swift */; };
+		0C09BAC4288A896A00D2011F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09BAC3288A896A00D2011F /* UILabel+Extension.swift */; };
 		0C1C2E1721C3B269008269C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C2E1621C3B269008269C2 /* AppDelegate.swift */; };
 		0C1C2E1921C3B269008269C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C2E1821C3B269008269C2 /* ViewController.swift */; };
 		0C1C2E1C21C3B269008269C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C1C2E1A21C3B269008269C2 /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 		0C011B1021C7E24E00F9DCE3 /* annalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = annalViewController.swift; sourceTree = "<group>"; };
 		0C0695EC28878F0B00BCF34B /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		0C0695F82887A77700BCF34B /* 3D Objects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "3D Objects"; sourceTree = "<group>"; };
+		0C09BABF288A814000D2011F /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		0C09BAC1288A891100D2011F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		0C09BAC3288A896A00D2011F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		0C1C2E1321C3B269008269C2 /* Hiking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hiking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C1C2E1621C3B269008269C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C1C2E1821C3B269008269C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +108,9 @@
 			children = (
 				0C0695F82887A77700BCF34B /* 3D Objects */,
 				0CE6458321E47FCE00E8CD0B /* CoreDataHelper.swift */,
+				0C09BABF288A814000D2011F /* Common.swift */,
+				0C09BAC1288A891100D2011F /* UIView+Extension.swift */,
+				0C09BAC3288A896A00D2011F /* UILabel+Extension.swift */,
 				0C1C2E1621C3B269008269C2 /* AppDelegate.swift */,
 				0C1C2E1821C3B269008269C2 /* ViewController.swift */,
 				0C2BEEA6287E54300084C16D /* SubscriptionInfoView.swift */,
@@ -288,12 +297,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C09BAC0288A814000D2011F /* Common.swift in Sources */,
 				0CEC1D0621DE1FF800E06C95 /* AltimeterViewController.swift in Sources */,
 				0C99B85021DCC8FC0040BD5C /* WebViewController.swift in Sources */,
 				0C1C2E1921C3B269008269C2 /* ViewController.swift in Sources */,
 				0C2BEEA8287E54300084C16D /* SubscriptionInfoView.swift in Sources */,
 				0CFD147521EB499F002C54DD /* ResultTVC.swift in Sources */,
 				0C0695ED28878F0B00BCF34B /* ARView.swift in Sources */,
+				0C09BAC2288A891100D2011F /* UIView+Extension.swift in Sources */,
+				0C09BAC4288A896A00D2011F /* UILabel+Extension.swift in Sources */,
 				0CE6458721E47FEC00E8CD0B /* Note.xcdatamodeld in Sources */,
 				0CFF58D421CB2628003E00A2 /* MapViewController.swift in Sources */,
 				0C1C2E1721C3B269008269C2 /* AppDelegate.swift in Sources */,
@@ -460,7 +472,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.oscaryen.Hiking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -482,7 +494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.oscaryen.Hiking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

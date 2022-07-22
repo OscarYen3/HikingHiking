@@ -156,6 +156,49 @@ class AltimeterViewController: UIViewController,CLLocationManagerDelegate {
         }
     }
 
+    @IBAction func bytnClick(_ sender: Any) {
+        var message: String = ""
+        if UserDefaults.myToken == nil {
+            message = "沒有收據"
+        } else if UserDefaults.myToken == "" {
+            message = "沒有收據"
+        } else {
+            message = UserDefaults.myToken ?? ""
+        }
+        let controller = UIAlertController(title: "收據通知", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "匯出", style: .default) { _ in
+           
+            let newdisplay = message
+            
+            let activityVC = UIActivityViewController(activityItems: [newdisplay], applicationActivities: nil)
+
+            activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+                self.view.showToast(toastMessage: "OMG!!!失敗了啦！！", duration: 3)
+                if completed {
+                    self.view.showToast(toastMessage: "completed", duration: 3)
+                }
+            }
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                var popoverController : UIPopoverPresentationController!
+                popoverController = activityVC.popoverPresentationController
+                popoverController.sourceView = self.view
+                popoverController.permittedArrowDirections = UIPopoverArrowDirection()
+            }
+            self.present(activityVC, animated: true, completion: nil)
+         }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+        if message == "沒有收據" {
+            controller.addAction(cancelAction)
+        } else {
+            controller.addAction(okAction)
+            controller.addAction(cancelAction)
+        }
+       
+        
+        present(controller, animated: true, completion: nil)
+        
+    }
 }
 extension UIView {
     func takeSnapshot() -> UIImage {

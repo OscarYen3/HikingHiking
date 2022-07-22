@@ -18,22 +18,16 @@ let PRODUCT_ID = "com.oscaryen.Hiking_VIP"
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,annalViewControllerDelegate,SKPaymentTransactionObserver, SKProductsRequestDelegate, SubscriptionInfoDelegate,GADBannerViewDelegate{
  
-    
-    
-    
     @IBOutlet weak var Firsttbv: UIView!
     @IBOutlet weak var Secondtbv: UITableView!
     @IBOutlet weak var Segment: UISegmentedControl!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var btnSubscription: UIButton!
     @IBOutlet weak var subscriptionView: UIView!
-    
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
-    
     @IBOutlet weak var lblSubscription: UILabel!
     @IBOutlet weak var btnCheck: UIButton!
-    
     @IBOutlet weak var bannerView: GADBannerView!
     
     @Published private(set) var purchasedIdentifiers = Set<String>()
@@ -60,13 +54,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.Secondtbv.backgroundView?.alpha = 0.2
         self.Secondtbv.backgroundView?.contentMode = .scaleAspectFit
         Thread.sleep(forTimeInterval: 0.5)
-        self.paymentTransactionPurchased()
+        
         btnCheck.setImage(UIImage(named: "check"), for: .selected)
         btnCheck.setImage(UIImage(named: "uncheck"), for: .normal)
         btnCheck.setTitle("", for: .selected)
         btnCheck.setTitle("", for: .normal)
         
-       
         bannerView.delegate = self
         bannerView.adUnitID = "ca-app-pub-8113349784134636/9986765456"
         bannerView.rootViewController = self
@@ -75,7 +68,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.paymentTransactionPurchased()
         if #available(iOS 15.0, *) {
         var updateListenerTask: Task<Void, Error>? = nil
             updateListenerTask = listenForTransactions()
@@ -284,7 +277,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
          func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
              let productArray = response.products
              if productArray.count == 0 {
-                 print("此商品id没有对应的商品")
+                 self.view.showToast(toastMessage: "此商品id没有对应的商品", duration: 3)
                  return
              }
              var product:SKProduct!
@@ -321,19 +314,22 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 //                    self.refreshToken()
                     break
                 case.purchasing: //商品添加进列表
-                    print("交易推遲, 等待外部操作")
+                    self.view.showToast(toastMessage: "交易推遲, 等待外部操作", duration: 3)
+                   
                     break
                 case.restored://已经购买过该商品
-                    print("買過了，但不跳Alert")
+                    self.view.showToast(toastMessage: "買過了，但不跳Alert", duration: 3)
                     
                     completePay(transaction: tran)
 //                    SKPaymentQueue.default().finishTransaction(tran)
                     break
                 case.failed://购买失败
+                    self.view.showToast(toastMessage: "购买失败", duration: 3)
 //                    completePay(transaction: tran)
                     failedTransaction(transaction: tran)
                     break
                 case.deferred: //延期？
+                    self.view.showToast(toastMessage: "延期", duration: 3)
                     print("deferred 延期 deferred")
                     break
                 default:
@@ -382,6 +378,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             let base64Str = data.base64EncodedString(options: [])
             self.receipt = "\(base64Str)"
             let params = NSMutableDictionary()
+            UserDefaults.myToken = self.receipt
             params["receipt-data"] = base64Str
             params["password"] = "7304b3ac9f01484892ed5a729700d937"
             params["exclude-old-transactions"] = true
@@ -413,7 +410,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                     case 0:
                         let expires = (self.expires_date as NSString).integerValue
                         if (expires / 1000) > Int(Date().timeIntervalSince1970) {
-                            print("购买成功")
+                            self.view.showToast(toastMessage: "購賣成功", duration: 3)
                             self.vip = true
                         }
                         self.setLoading(false)
@@ -731,6 +728,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
      func verifyByMyself() {
         expires_date = ""
         let params = NSMutableDictionary()
+        UserDefaults.myToken = self.receipt
         params["receipt-data"] = self.receipt
         params["password"] = "7304b3ac9f01484892ed5a729700d937"
         params["exclude-old-transactions"] = true
@@ -762,10 +760,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 case 0:
                     let expires = (self.expires_date as NSString).integerValue
                     if (expires / 1000) > Int(Date().timeIntervalSince1970) {
-                        print("购买成功")
+                        self.view.showToast(toastMessage: "购买成功", duration: 3)
                         self.vip = true
                     } else {
-                        print("過期")
+                        self.view.showToast(toastMessage: "過期", duration: 3)
                         self.vip = false
                     }
                     self.loadCoreDate()
