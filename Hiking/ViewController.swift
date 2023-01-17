@@ -73,13 +73,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         var updateListenerTask: Task<Void, Error>? = nil
             updateListenerTask = listenForTransactions()
         }
-        btnSubscription.isEnabled = false
-        btnCheck.isSelected = false
+        btnSubscription.isEnabled = true
+        btnCheck.isSelected = true
         
         Segment.selectedSegmentIndex = 0
         Firsttbv.isHidden = Segment.selectedSegmentIndex == 0 ? false : true
         Secondtbv.isHidden =  Segment.selectedSegmentIndex == 1 ? false : true
-        subscriptionView.isHidden = Segment.selectedSegmentIndex == 0 ? checkVip() : true
+//        subscriptionView.isHidden = Segment.selectedSegmentIndex == 0 ? checkVip() : true
+        subscriptionView.isHidden = true
         self.navigationItem.rightBarButtonItem?.isEnabled =  false
         self.navigationItem.rightBarButtonItem?.tintColor = .clear
     }
@@ -204,7 +205,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         Firsttbv.isHidden = Segment.selectedSegmentIndex == 0 ? false : true
         Secondtbv.isHidden =  Segment.selectedSegmentIndex == 1 ? false : true
-        subscriptionView.isHidden = Segment.selectedSegmentIndex == 0 ? checkVip() : true
+//        subscriptionView.isHidden = Segment.selectedSegmentIndex == 0 ? checkVip() : true
+        subscriptionView.isHidden = true
         self.view.endEditing(true)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -239,7 +241,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         DispatchQueue.main.async {
             self.Firsttbv.isHidden = self.Segment.selectedSegmentIndex == 0 ? false : true
             self.Secondtbv.isHidden =  self.Segment.selectedSegmentIndex == 1 ? false : true
-            self.subscriptionView.isHidden = self.Segment.selectedSegmentIndex == 0 ? self.checkVip() : true
+//            self.subscriptionView.isHidden = self.Segment.selectedSegmentIndex == 0 ? self.checkVip() : true
+            self.subscriptionView.isHidden = true
         }
        
     }
